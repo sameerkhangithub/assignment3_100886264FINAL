@@ -5,15 +5,14 @@
         <% assignments.forEach(assignment => { %>
             <li>
                 <strong><%= assignment.title %></strong> -
-                <%= assignment.subject %>
-                    (Due:
-                    <%= assignment.dueDate %>, Status:
-                        <%= assignment.status %>)
-                            <a href="/assignments/<%= assignment._id %>/edit" class="btn btn-warning">Edit</a>
-                            <form action="/assignments/<%= assignment._id %>?_method=DELETE" method="POST" style="display:inline;">
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                            </form>
+                <%= assignment.subject %> (Due:
+                    <%= new Date(assignment.dueDate).toLocaleDateString('en-US') %>, Description: </em>
+                        <%= assignment.description %>, Status:
+                            <%= assignment.status %>)
+                                <a href="/assignments/<%= assignment._id %>/edit" class="btn btn-warning">Edit</a>
+                                <form action="/assignments/<%= assignment._id %>?_method=DELETE" method="POST" style="display:inline;">
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
             </li>
             <% }) %>
     </ul>
-</div>
