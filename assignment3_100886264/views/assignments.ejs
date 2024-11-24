@@ -1,0 +1,19 @@
+<div class="container">
+    <h1>Your Assignments</h1>
+    <a href="/assignments/new" class="btn btn-success">Add New Assignment</a>
+    <ul>
+        <% assignments.forEach(assignment => { %>
+            <li>
+                <strong><%= assignment.title %></strong> -
+                <%= assignment.subject %>
+                    (Due:
+                    <%= assignment.dueDate %>, Status:
+                        <%= assignment.status %>)
+                            <a href="/assignments/<%= assignment._id %>/edit" class="btn btn-warning">Edit</a>
+                            <form action="/assignments/<%= assignment._id %>?_method=DELETE" method="POST" style="display:inline;">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+            </li>
+            <% }) %>
+    </ul>
+</div>
