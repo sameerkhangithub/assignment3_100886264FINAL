@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 // Function to connect to the MongoDB database
 const connectDB = async() => {
     try {
-        // MongoDB connection URI (ensure your credentials and cluster details are correct)
+        // MongoDB connection URI 
         const uri = 'mongodb+srv://sameer7khan6:sameer1423@cluster0.zhiv8.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 
         // Connect to MongoDB using Mongoose
