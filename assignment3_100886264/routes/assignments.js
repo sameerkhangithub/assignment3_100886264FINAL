@@ -8,13 +8,13 @@ router.get('/', async(req, res) => {
         // Fetch all assignments from the database
         const assignments = await Assignment.find();
 
-        // Render the 'assignments/index' view and pass assignments data and query parameters
-        res.render('assignments/index', {
+        // Render the 'assignments' view and pass assignments data and query parameters to the view
+        res.render('assignments', {
             assignments: assignments, // All assignments
             query: req.query // Query parameters from the URL (if any)
         });
     } catch (error) {
-        console.error(error); // Log the error
+        console.error(error); // Log any errors that occur
         res.status(500).send('Server Error'); // Return a 500 error if something goes wrong
     }
 });
@@ -42,24 +42,26 @@ router.get('/new', (req, res) => {
     res.render('new-assignment'); // Render the 'new-assignment' view
 });
 
-// Route to edit an existing assignment
+// Route to edit an existing assignment by ID
 router.get('/:id/edit', async(req, res) => {
     try {
         // Find the assignment by its ID
         const assignment = await Assignment.findById(req.params.id);
 
-        // Render the 'edit' view and pass the found assignment data
+        // Render the 'edit' view and pass the found assignment data to the view
         res.render('edit', { assignment });
     } catch (err) {
-        console.error(err); // Log the error
+        console.error(err); // Log any errors that occur
         res.status(500).send('Error fetching assignment'); // Return a 500 error if something goes wrong
     }
 });
 
-// Route to update an existing assignment
+// Route to update an existing assignment by ID
 router.put('/:id', async(req, res) => {
     try {
-        const { title, description, subject, dueDate, status } = req.body; // Extract updated data from the request body
+        // Extract updated assignment data from the request body
+        const { title, description, subject, dueDate, status } = req.body;
+
         // Update the assignment with the new data
         const updatedAssignment = await Assignment.findByIdAndUpdate(req.params.id, {
             title,
@@ -81,14 +83,14 @@ router.put('/:id', async(req, res) => {
     }
 });
 
-// Route to delete an assignment
+// Route to delete an assignment by ID
 router.delete('/:id', async(req, res) => {
     try {
         // Find the assignment by ID and delete it
         await Assignment.findByIdAndDelete(req.params.id);
 
         // Redirect to the list of assignments with a query indicating the assignment was deleted
-        res.redirect('/assignments?deleted=true');
+        res.redirect('/assignments?deleted=true'); // Pass the 'deleted' query parameter
     } catch (err) {
         console.error(err); // Log any errors
         res.status(500).send('Error deleting assignment'); // Return a 500 error if something goes wrong
