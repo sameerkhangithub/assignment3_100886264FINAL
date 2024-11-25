@@ -2,27 +2,38 @@
 <html lang="en">
 
 <head>
+    <!-- Character encoding for the document -->
     <meta charset="UTF-8">
+
+    <!-- Viewport settings for responsive design -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Title of the page, dynamically set by EJS -->
     <title>
         <%= title %>
     </title>
 
+    <!-- Bootstrap CSS for responsive design and styling -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
 
+    <!-- Custom CSS stylesheet for additional styling -->
     <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 
 <body class="d-flex flex-column min-vh-100">
-    =
+    <!-- Include header partial, typically contains navigation and branding -->
     <%- include('partials/header') %>
 
+        <!-- Main content area where page-specific content is injected -->
         <main class="container my-4">
+            <!-- Body content injected dynamically via EJS -->
             <%- body %>
         </main>
 
+        <!-- Include footer partial, typically contains copyright and footer links -->
         <%- include('partials/footer') %>
 
+            <!-- Bootstrap JS (for interactive elements like modals, dropdowns, etc.) -->
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 

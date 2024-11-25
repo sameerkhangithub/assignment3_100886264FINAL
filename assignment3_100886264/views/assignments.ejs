@@ -1,31 +1,48 @@
+<!-- Main Container for displaying assignments -->
 <div class="container">
+    <!-- Page Title -->
     <h1 class="mb-4">Your Assignments</h1>
 
-
+    <!-- Button to add a new assignment -->
     <a href="/assignments/new" class="btn btn-success mb-3">Add New Assignment</a>
+
+    <!-- List of Assignments -->
     <ul class="list-group">
+        <!-- Loop through assignments and display each one -->
         <% assignments.forEach(assignment => { %>
+            <!-- List item for each assignment -->
             <li class="list-group-item d-flex flex-column">
+                <!-- Header section for assignment title and due date -->
                 <div class="d-flex justify-content-between align-items-center">
                     <div>
+                        <!-- Display assignment title -->
                         <strong><%= assignment.title %></strong>
                         <br>
+                        <!-- Display subject and due date -->
                         <small>
                             Subject: <%= assignment.subject %> - 
                             Due: <%= new Date(assignment.dueDate).toLocaleDateString() %>
                         </small>
                     </div>
                     <div>
+                        <!-- Link to edit the assignment -->
                         <a href="/assignments/<%= assignment._id %>/edit" class="btn btn-warning btn-sm">Edit</a>
+
+                        <!-- Form to delete the assignment with confirmation -->
                         <form action="/assignments/<%= assignment._id %>?_method=DELETE" method="POST" class="d-inline delete-form">
+                            <!-- Delete button -->
                             <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                         </form>
                     </div>
                 </div>
+
+                <!-- Assignment description -->
                 <div class="mt-2">
                     <strong>Description:</strong>
                     <%= assignment.description || 'No description provided' %>
                 </div>
+
+                <!-- Display assignment status with different colors based on status -->
                 <div>
                     <strong>Status:</strong>
                     <span class="<%= assignment.status === 'Completed' ? 'text-success' : 'text-warning' %>">
@@ -37,12 +54,15 @@
     </ul>
 </div>
 
+<!-- Script for confirming assignment deletion -->
 <script>
+    // Add event listeners to all delete forms
     document.querySelectorAll('.delete-form').forEach(form => {
         form.addEventListener('submit', function(event) {
+            // Ask for confirmation before submitting the delete form
             const confirmDelete = confirm('Are you sure you want to delete this assignment?');
             if (!confirmDelete) {
-                event.preventDefault();
+                event.preventDefault(); // Prevent the form from being submitted if the user cancels
             }
         });
     });
