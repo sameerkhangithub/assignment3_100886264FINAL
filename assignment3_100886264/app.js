@@ -9,35 +9,37 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var assignmentsRouter = require('./routes/assignments');
 var methodOverride = require('method-override');
-
-
-
-
+const ejsLayouts = require('express-ejs-layouts');
 
 var app = express();
 
 connectDB();
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+app.use(ejsLayouts);
 
-
-''
 app.use(methodOverride('_method'));
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
 app.use((req, res, next) => {
     res.locals.title = "Assignment Tracker";
     next();
 });
 
+app.get('/', (req, res) => {
+    res.render('home', { title: 'Home - Assignment Tracker' }); // Pass title dynamically
+});
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/assignments', assignmentsRouter);
-
 
 app.use(function(req, res, next) {
     next(createError(404));

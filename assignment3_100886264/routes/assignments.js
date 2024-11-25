@@ -5,10 +5,13 @@ const Assignment = require('../models/Assignment');
 router.get('/', async(req, res) => {
     try {
         const assignments = await Assignment.find();
-        res.render('assignments', { assignments });
-    } catch (err) {
-        console.error(err);
-        res.status(500).send('Error fetching assignments');
+        res.render('assignments/index', {
+            assignments: assignments,
+            query: req.query
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Server Error');
     }
 });
 
@@ -61,11 +64,12 @@ router.put('/:id', async(req, res) => {
 router.delete('/:id', async(req, res) => {
     try {
         await Assignment.findByIdAndDelete(req.params.id);
-        res.redirect('/assignments');
+        res.redirect('/assignments?deleted=true');
     } catch (err) {
         console.error(err);
         res.status(500).send('Error deleting assignment');
     }
 });
+
 
 module.exports = router;
