@@ -6,10 +6,10 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 // Import custom modules for database connection and routing
-var connectDB = require('./assignment3_100886264/config'); // Connect to the database
-var indexRouter = require('./assignment3_100886264/routes/index'); // Index route
-var usersRouter = require('./assignment3_100886264/routes/users'); // Users route
-var assignmentsRouter = require('./assignment3_100886264/routes/assignments'); // Assignments route
+var connectDB = require('./config'); // Connect to the database
+var indexRouter = require('./routes/index'); // Index route
+var usersRouter = require('./routes/users'); // Users route
+var assignmentsRouter = require('./routes/assignments'); // Assignments route
 var methodOverride = require('method-override'); // For HTTP method override (e.g., PUT/DELETE)
 const ejsLayouts = require('express-ejs-layouts'); // For EJS layouts
 

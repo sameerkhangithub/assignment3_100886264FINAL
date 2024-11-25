@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router(); // Create a new router instance for handling assignments
-const Assignment = require('../../models/Assignment'); // Import the Assignment model
+const Assignment = require('../models/Assignment'); // Import the Assignment model
 
 // Route to get all assignments
 router.get('/', async(req, res) => {
