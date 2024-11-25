@@ -1,8 +1,83 @@
+/* Global Background and Text Color */
+
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    background-color: #979797;
+    /* Light gray background */
+    color: #f8f1f1;
+    /* Dark text color for readability */
 }
 
+
+/* Change the color of links */
+
 a {
-  color: #00B7FF;
+    color: #007bff;
+    /* Blue links */
+}
+
+a:hover {
+    color: #0056b3;
+    /* Darker blue when hovering */
+}
+
+
+/* Customize button colors */
+
+.btn-success {
+    background-color: #28a745;
+    /* Green button */
+    color: white;
+    /* White text on the button */
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    /* Red button */
+    color: white;
+    /* White text on the button */
+}
+
+.btn-warning {
+    background-color: #ffc107;
+    /* Yellow button */
+    color: black;
+    /* Black text on the button */
+}
+
+.btn-info {
+    background-color: #17a2b8;
+    /* Blue button */
+    color: white;
+    /* White text on the button */
+}
+
+
+/* Modify alert message colors */
+
+.alert-success {
+    background-color: #28a745;
+    /* Green success message */
+    color: white;
+    /* White text */
+}
+
+.alert-danger {
+    background-color: #dc3545;
+    /* Red error message */
+    color: white;
+    /* White text */
+}
+
+.alert-warning {
+    background-color: #ffc107;
+    /* Yellow warning message */
+    color: black;
+    /* Black text */
+}
+
+.alert-info {
+    background-color: #17a2b8;
+    /* Blue info message */
+    color: white;
+    /* White text */
 }
